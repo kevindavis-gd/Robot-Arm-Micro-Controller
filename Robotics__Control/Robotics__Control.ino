@@ -63,7 +63,7 @@ void loop(){
       break;     
 
     case '4':
-      MoveTest();
+      Flex Bicep();
       break;
     } 
   
@@ -129,34 +129,11 @@ void MoveCenter(){
 }
 
 //************************************************ Test Motion ********************************************
-void MoveTest(){
+void Flex Bicep(){
   Serial.println("###########################");
   Serial.println("Initializing Movement Sign Test");  
   Serial.println("###########################");
   delay(10);  
-  /*id = 1;
-  pos = 2048;
-  while(id <= SERVOCOUNT){
-  Serial.print("Moving Servo ID: ");
-  Serial.println(id);  
-
-  while(pos >= 1024){  
-  SetPosition(id, pos);
-  pos = pos--;
-  delay(10);
-  }
-
-  while(pos <= 2048){  
-  SetPosition(id, pos);
-  pos = pos++;
-  delay(10);
-  }
-  
-  //iterate to next servo ID
-  id = id++;
-
-  }*/
-  
   
   // 0 position for Shoulder 1 is   2110
   // 0 position for Shoulder 2 is   2030
@@ -164,20 +141,30 @@ void MoveTest(){
   // 0 position for Elbow is        2000
   // 0 position for Forearm spin is 2040
   // 90 degrees is 1024
-  // 360 degrees is 40
+  // 180 degrees is 2048
   
-  
-  int pos = 2110;
-  for ( int x = 0; x < 1024; x++)
+  int x;
+  int Shoulder1_pos = 2110;
+  int Shoulder2_pos = 2030;
+  for (x = 0; x < 1024; x++)
   {
-    // pluss x or minus to change direction
-   int newpos = pos - x;
-    SetPosition (1, newpos);
+    // plus x or minus x to change direction
+    SetPosition (1, Shoulder1_pos - x);
+    SetPosition (2, Shoulder2_pos - x);
+    SetPosition (4, Shoulder1_pos - x);
     delay(2);
   }
   
-   MoveCenter();
-   RelaxServos();
+  while (x > 0)
+  {
+    // plus x or minus x to change direction
+    SetPosition (1, Shoulder1_pos - x);
+    SetPosition (2, Shoulder2_pos - x);
+    SetPosition (4, Shoulder1_pos - x);
+    delay(2);
+    x--;
+  }
+  
    MenuOptions(); 
 }
 
@@ -190,7 +177,7 @@ void MenuOptions(){
     Serial.println("1) Servo Scanning Test");        
     Serial.println("2) Move Servos to Center");    
     Serial.println("3) Relax Servos");            
-    Serial.println("4) Perform Movement Sign Test");                    
+    Serial.println("4) Flex Bicep");                    
     Serial.println("###########################"); 
 }
 
