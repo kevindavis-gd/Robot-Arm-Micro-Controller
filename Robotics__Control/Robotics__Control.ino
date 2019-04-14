@@ -34,6 +34,8 @@ void setup(){
   // 0 position for Elbow is        2000
   // 0 position for Forearm spin is 2040
  
+
+  
   MoveCenter();
   MenuOptions(); 
   RunCheck = 1;
@@ -106,25 +108,10 @@ void ScanServo(){
 }
 
 //************************************** Move Servos to Center *******************************************
-void MoveCenter(){
-   /* delay(100);                    // recommended pause
-    bioloid.loadPose(Center);   // load the pose from FLASH, into the nextPose buffer
-    bioloid.readPose();            // read in current servo positions to the curPose buffer
-    Serial.println("###########################");
-    Serial.println("Moving servos to centered position");
-    Serial.println("###########################");    
-    delay(1000);
-    bioloid.interpolateSetup(1000); // setup for interpolation from current->next over 1/2 a second
-    while(bioloid.interpolating > 0){  // do this while we have not reached our new pose
-        bioloid.interpolateStep();     // move servos, if necessary. 
-        delay(3);
-    }
-    if (RunCheck == 1){
-      MenuOptions();
-  }*/
-  
-  
+void MoveCenter()
+{
   //center positions of motors
+  
   SetPosition(1, 2110);
   SetPosition(2, 2030);
   SetPosition(3, 1030);
@@ -132,7 +119,7 @@ void MoveCenter(){
   SetPosition(5, 2040);
 }
 
-//************************************************ Test Motion ********************************************
+//************************************************ FLex Bicep ********************************************
 void FlexBicep(){
   Serial.println("###########################");
   Serial.println("Initializing Movement Sign Test");  
@@ -146,6 +133,7 @@ void FlexBicep(){
   // 0 position for Forearm spin is 2040
   // 90 degrees is 1024
   // 180 degrees is 2048
+  
   MoveCenter();
   delay(2000);
   
@@ -161,6 +149,7 @@ void FlexBicep(){
     delay(2);
   }
   
+  //reverse the movements back to original position
   while (x > 0)
   {
     // plus x or minus x to change direction
@@ -171,6 +160,7 @@ void FlexBicep(){
     x--;
   }
   
+  //display menu options
    MenuOptions(); 
 }
 
