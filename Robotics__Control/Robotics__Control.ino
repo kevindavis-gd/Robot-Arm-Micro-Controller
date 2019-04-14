@@ -33,12 +33,8 @@ void setup(){
   // 0 position for Bicep Spin is   1030
   // 0 position for Elbow is        2000
   // 0 position for Forearm spin is 2040
-  SetPosition(1, 2110);
-  SetPosition(2, 2030);
-  SetPosition(3, 1030);
-  SetPosition(4, 2000);
-  SetPosition(5, 2040);
-  
+ 
+  MoveCenter();
   MenuOptions(); 
   RunCheck = 1;
 }
@@ -63,7 +59,7 @@ void loop(){
       break;     
 
     case '4':
-      Flex Bicep();
+      FlexBicep();
       break;
     } 
   
@@ -111,7 +107,7 @@ void ScanServo(){
 
 //************************************** Move Servos to Center *******************************************
 void MoveCenter(){
-    delay(100);                    // recommended pause
+   /* delay(100);                    // recommended pause
     bioloid.loadPose(Center);   // load the pose from FLASH, into the nextPose buffer
     bioloid.readPose();            // read in current servo positions to the curPose buffer
     Serial.println("###########################");
@@ -125,11 +121,19 @@ void MoveCenter(){
     }
     if (RunCheck == 1){
       MenuOptions();
-  }
+  }*/
+  
+  
+  //center positions of motors
+  SetPosition(1, 2110);
+  SetPosition(2, 2030);
+  SetPosition(3, 1030);
+  SetPosition(4, 2000);
+  SetPosition(5, 2040);
 }
 
 //************************************************ Test Motion ********************************************
-void Flex Bicep(){
+void FlexBicep(){
   Serial.println("###########################");
   Serial.println("Initializing Movement Sign Test");  
   Serial.println("###########################");
@@ -142,6 +146,8 @@ void Flex Bicep(){
   // 0 position for Forearm spin is 2040
   // 90 degrees is 1024
   // 180 degrees is 2048
+  MoveCenter();
+  delay(2000);
   
   int x;
   int Shoulder1_pos = 2110;
